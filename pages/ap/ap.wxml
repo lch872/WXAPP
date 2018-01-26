@@ -1,0 +1,49 @@
+<view class="page">
+ 
+
+
+
+  <image style="width:100%; height:250px" src="../images/img.png"></image>
+  <view style="align-items:center">
+    <text style="background-color:#000" > 日常活动 ：周末日常彩排演出</text>
+  </view>
+   
+  
+
+  <view class="home-view1">
+    <view class="home-view3"> 
+        <image  class="home-image-heart" src="../images/money.png"></image>
+        <text class="home-text-time" >活动费用： ￥15元/人</text>
+    </view>
+    <view class="home-view-line"></view>
+  
+
+    
+  <view class="home-view3">
+    <image  class="home-image-heart" src="../images/time.png"></image>
+    <text class="home-text-time" >活动时间： 2018-01-26 星期六 </text>
+  </view>
+  <view class="home-view-line"></view> 
+
+  <view class="home-view3">
+    <image  class="home-image-heart" src="../images/local.png"></image>
+    <text class="home-text-time" >活动地点： 广州天河客村站XXX楼14楼C2011室 </text>
+  </view>
+  <view class="home-view-line"></view> 
+  </view>
+
+  <view class="page__hd">
+    <text class="page__desc">选择器</text>
+  </view>
+  <view class="page__bd">
+    <view class="section">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          报名时间：{{array[index]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+   <button bindtap='bindViewTap' class='applyBtn'>现在报名</button> 
+</view>

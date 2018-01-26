@@ -1,0 +1,87 @@
+page {
+  /* background-color: #fff; */
+  height: 100%;
+}
+.page__hd{
+    padding: 50rpx 50rpx 100rpx 50rpx;
+    text-align: center;
+}
+.page__title{
+    display: inline-block;
+    padding: 20rpx 40rpx;
+    font-size: 32rpx;
+    color: #AAAAAA;
+    border-bottom: 1px solid #CCCCCC;
+}
+.page__desc{
+    display: none;
+    margin-top: 20rpx;
+    font-size: 26rpx;
+    color: #BBBBBB;
+}
+.section{
+    margin-bottom: 80rpx;
+}
+.section__title{
+    margin-bottom: 16rpx;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+}
+.picker{
+  padding: 26rpx;
+  background-color: #FFFFFF;
+}
+ .applyBtn{
+  color: white;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  background-color: #5196F8;
+} 
+
+
+
+
+.home-view1{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin: 6px;
+}
+
+ .home-view3{
+    margin-top: 10rpx;
+    display: flex;
+} 
+
+.home-image-heart{
+  margin-left: 20rpx;
+    width: 35rpx;
+    height: 35rpx;
+}
+
+.home-text-time{
+    text-align: left;
+    margin-right: 5rpx;
+    margin-left: 20rpx;
+    color: black;
+    font-size: 31rpx;
+}
+
+.home-view-line{
+ width: 90%;
+ height: 1rpx;
+ margin-top: 5rpx;
+ margin-left: 20rpx;
+ margin-right: 5rpx;
+ background-color: #F2F2F2;
+}
+
+
+.bgColor{
+    background-color: lightblue;
+    opacity: 0.6;
+}
