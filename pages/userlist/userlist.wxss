@@ -1,0 +1,25 @@
+
+.home-view3{
+    margin-top: 20rpx;
+    display: flex;
+    align-items:center;
+} 
+.userlist-image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius:50%;
+  margin-left: 15rpx;
+}
+.userlist-name{
+  text-align: center;
+  vertical-align:middle;
+  margin-left: 20rpx;
+}
+.userlist-line{
+ width: 93%;
+ height: 2rpx;
+ margin-top: 20rpx;
+ margin-left: 20rpx;
+ margin-right: 5rpx;
+ background-color: #F2F2F2;
+}

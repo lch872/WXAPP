@@ -2,48 +2,72 @@
  
 
 
+  <view style='text-align:center'>
+    <image style="width:90%; height:350rpx;" src="../images/img.png"></image>
+  </view>
+  
+  <view style="display:flex;justify-content:center;">
+    <text style="font-size:40rpx;font-weight:bold"  >本期活动 ：周末常规话剧练习</text>
+  </view>
 
-  <image style="width:100%; height:250px" src="../images/img.png"></image>
-  <view style="align-items:center">
-    <text style="background-color:#000" > 日常活动 ：周末日常彩排演出</text>
+  <view style='margin-top:20rpx;width:100%;align-items:center;justify-content:space-between;display:flex'>
+    <view style='align-items:center;display:flex;margin-left:5rpx;'>
+    <image class="home-image-heart" src="../images/look.png"></image>  
+    <text style='font-size:28rpx;color:#6F6F6F'>1586</text>   
+    </view>
+    <button bindtap='shareClick' open-type="share" class='button-after' style=' width:180rpx; height:60rpx;font-size:28rpx;margin-left:0rpx;margin-right:30rpx;background-color:#FFDA33;border-radius:30rpx;'>邀请好友</button>  
   </view>
    
   
 
-  <view class="home-view1">
-    <view class="home-view3"> 
-        <image  class="home-image-heart" src="../images/money.png"></image>
-        <text class="home-text-time" >活动费用： ￥15元/人</text>
+  <view  class="home-view1">
+    <view wx:for="{{dataArr}}" class="home-view3"> 
+        <image  class="home-image-heart" src="../images/{{item.icon}}.png"></image>
+        <text class="home-text-time" >{{item.text}}</text>
     </view>
     <view class="home-view-line"></view>
-  
+  </view>
 
+  <view bindtap='jumpToList' class='list-view' style='display:flex; align-items:center;margin-top: 15rpx;'>
+
+    <text style="text-align:center;font-size: 32rpx;color:#46C9A3;margin-left:30rpx;margin-bottom: 10rpx;-webkit-line-clamp:2;"> 12/50\n人报名</text>
     
-  <view class="home-view3">
-    <image  class="home-image-heart" src="../images/time.png"></image>
-    <text class="home-text-time" >活动时间： 2018-01-26 星期六 </text>
-  </view>
-  <view class="home-view-line"></view> 
-
-  <view class="home-view3">
-    <image  class="home-image-heart" src="../images/local.png"></image>
-    <text class="home-text-time" >活动地点： 广州天河客村站XXX楼14楼C2011室 </text>
-  </view>
-  <view class="home-view-line"></view> 
-  </view>
-
-  <view class="page__hd">
-    <text class="page__desc">选择器</text>
-  </view>
-  <view class="page__bd">
-    <view class="section">
-      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-        <view class="picker">
-          报名时间：{{array[index]}}
-        </view>
-      </picker>
+    <view style='background-color:#E4E3E4;height: 35px; width: 2rpx;margin-left: 30rpx;'></view>
+    <view style='margin-left: 5rpx;'>
+       <image wx:for="{{[1,2,3,4,5,6]}}"class='icon-list-view' src="../images/icon.jpg"></image>
     </view>
+    <image class='icon-list-view-icon'src="../images/right.png"></image>
   </view>
 
-   <button bindtap='bindViewTap' class='applyBtn'>现在报名</button> 
+
+  <!-- <map longitude="113.324520" latitude="23.099994" markers="{{markers}}" covers="{{covers}}" style="width: 375px; height: 200px;"></map> -->
+  <view style='justify-content:center;display:flex'>
+  <text style='margin-top:20rpx;font-size:30rpx;width:93%;color:#444444'>
+
+【活动介绍】
+我们提供短剧本、服装及道具，活动参与者将会分组进行排练以及表演。
+
+【活动安排】
+第一部分（约15分钟）例行暖场活动
+第二部分（约30分钟）话剧基础练习
+第三部分（约90分钟）分组话剧彩排
+第四部分（约60分钟）分组话剧表演
+第五部分（约15分钟）总结以及合照
+
+【活动答疑】
+没有表演基础可以来参加活动吗？
+  —可以。没有基础也可以来参加，交流学习。
+
+需要什么费用么?
+  — 象征性收费 15元/次, 活动后支付。
+
+</text>
+</view>
+<view style='height:100rpx'></view>
+</view>
+
+
+
+<view class='bottom-view'>
+  <navigator class='bottom-view-button' url="../index/index?title=navigate" hover-class="navigator-hover">我要报名</navigator>
 </view>

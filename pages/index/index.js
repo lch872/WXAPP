@@ -1,20 +1,30 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
 Page({
   data: {
-    motto: 'Hello World',
+    pickerData:[
+      {
+        "section":0,
+        "newindex":0,
+        "title": "活动时间",
+        "data": ['下午 14:00 - 18:00', '晚上 19:00 - 21:00'],
+      }, 
+      {
+        "section":1,
+        "newindex": 0,
+        "title": "自我评价",
+        "data": ['剧组炊事班','龙套实习生','活不过两幕','戏精你懂么','压轴台柱子'],
+      }
+    ],
+    motto: '遇见更好的自己 ：）',
     userInfo: {},
+    index: 0,
+    index2: 0,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../ap/ap'
-    })
-  },
+ 
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -50,5 +60,62 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  bindPickerChange: function (e) {
+    var num = e.currentTarget.dataset.current
+    this.data.pickerData[num].newindex = Number(e.detail.value)
+    this.setData({
+      pickerData: this.data.pickerData
+    })
+    
+  },
+
+  bindViewTap: function () {
+
+    wx.showLoading({
+      title: '加载中',
+    })
+
+    setTimeout(function () {
+      wx.hideLoading()
+      wx.showToast({
+        title: '报名成功',
+        icon: 'success',
+        duration: 2000
+      })
+    }, 2000)
+
+    
+    // wx.request({
+    //   url: 'http://localhost:8080/wx/apply',
+    //   method: 'POST',
+    //   data: app.globalData.userInfo,
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded' // 默认值
+    //   },
+    //   success: function (res) {
+    //     console.log(res.data)
+    //     console.log(app.globalData.userInfo)
+
+    //   }
+    // })
+    console.log("dddddddd")
+    this.setData({
+      enablePicker: !this.data.enablePicker
+    })
+    console.log(this.data.enablePicker)
+  },
+  cancelApply: function (e) {
+    wx.showActionSheet({
+      itemList: ['取消报名'],
+      itemColor: "#E43A37",
+      success: function (res) {
+        console.log(res.tapIndex)
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   }
+
 })

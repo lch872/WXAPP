@@ -1,13 +1,15 @@
 {
   "pages": [
-    "pages/ap/ap",
+    "pages/manager/manager",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/ap/ap",
+    "pages/logs/logs",
+    "pages/userlist/userlist"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "众乐话剧社",
     "navigationBarTextStyle": "black"
   }
 }

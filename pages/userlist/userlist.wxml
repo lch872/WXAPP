@@ -1,0 +1,8 @@
+<!--pages/userlist/userlist.wxml-->
+<view wx:for="{{userArr}}" class="home-view1">
+    <view class="home-view3"> 
+        <image  class="userlist-image" src="{{item.icon}}"></image>
+        <text class="userlist-name" >{{item.name}}</text>
+    </view>
+    <view class="userlist-line"></view>
+</view>

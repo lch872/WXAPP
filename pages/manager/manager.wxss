@@ -1,0 +1,30 @@
+.home-view1{
+    margin-top: 10rpx;
+    display: inline-block;
+} 
+.home-view3{
+    /* margin-top: 5rpx; */
+    /* margin-left: 10rpx; */
+    display: inline-block;
+    width: 15.7%;
+    height: 105rpx;
+    /* background-color:green; */
+    text-align:center;
+} 
+.userlist-image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius:50%;
+  display: inline-block;
+}
+.userlist-name{
+    margin-top: -5px;
+    display: block;
+    font-size:20rpx;
+    color:#000000;
+    line-height: 25rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    text-align:center;
+}

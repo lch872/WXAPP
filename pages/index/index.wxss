@@ -1,8 +1,9 @@
 /**index.wxss**/
 .userinfo {
   display: flex;
-  flex-direction: column;
+   flex-direction: column; 
   align-items: center;
+  margin-top: 25px;
 }
 
 .userinfo-avatar {
@@ -16,6 +17,66 @@
   color: #aaa;
 }
 
-.usermotto {
-  margin-top: 200px;
+.user-motto {
+  /* display: flex; */
+  /* margin-top: 200px; */
+  /* align-items: center; */
+  text-align: center;
 }
+.usermotto {
+    display: flex;  
+    margin-top: 200px;
+   align-items: center; 
+  text-align: center;
+}
+
+page {
+  background-color: #F7F7F7;
+  height: 100%;
+}
+.page__hd{
+    padding: 50rpx 50rpx 100rpx 50rpx;
+    text-align: center;
+}
+.page__title{
+    display: inline-block;
+    padding: 20rpx 40rpx;
+    font-size: 32rpx;
+    color: #AAAAAA;
+    border-bottom: 1px solid #CCCCCC;
+}
+.page__desc{
+    display: none;
+    margin-top: 20rpx;
+    font-size: 26rpx;
+    color: #BBBBBB;
+}
+
+.picker-view{
+   margin-top: 20rpx;
+}
+.section{
+    margin-top: 15rpx;
+}
+.section__title{
+  margin-left: 10rpx;
+    margin-bottom: 5rpx;
+    padding-left: 10rpx;
+    padding-right: 30rpx;
+    color: #939293;
+    font-size: 25rpx;
+
+}
+.picker{
+  padding: 26rpx;
+  background-color: #FFFFFF;
+}
+ .applyBtn{
+  color: white;
+  font-size: 30rpx;
+  margin-top: 80rpx;
+  margin-left: 30rpx; 
+  margin-right: 30rpx; 
+  background-color: #5196F8;
+  width: 90%;
+} 

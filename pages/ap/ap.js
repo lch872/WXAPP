@@ -1,46 +1,49 @@
 // pages/ap/ap.js
 const app = getApp()
 var order = ['red', 'yellow', 'blue', 'green', 'red']
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    markers: [{
+      latitude: 23.095666,
+      longitude: 113.321502,
+      name: 'T.I.T 创意园',
+      desc: '我现在的位置'
+    }],
+    covers: [{
+      latitude: 23.099794,
+      longitude: 113.324520,
+      iconPath: '../images/car.png',
+      rotate: 10
+    }, {
+      latitude: 23.099298,
+      longitude: 113.324129,
+      iconPath: '../images/car.png',
+      rotate: 90
+    }],
+    dataArr: [
+      { "icon": "money", "text": "费用: ￥15元 /人" },
+      { "icon": "time", "text": "时间: 2018-01-26 星期六" },
+      { "icon": "local", "text": "地点: 客村站D出口丽影广场B座5栋1102室" },
+    ],
     toView: 'red',
     scrollTop: 100,
     isScroll: false,
-    index: 0,
-    array: ['请选择活动时间', '下午14:00 - 下午18:00', '晚上19:00 - 晚上21:00'],
-  },
-
-  bindViewTap: function () {
-    wx.request({
-      url: 'http://localhost:8080/wx/apply',
-      method: 'POST',
-      data: app.globalData.userInfo,
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' // 默认值
-      },
-      success: function (res) {
-        console.log(res.data)
-        console.log(app.globalData.userInfo)
-        
-      }
-    })
-  },
-  bindPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value
-    })
+    enablePicker:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
 
   /**
@@ -98,5 +101,15 @@ Page({
     this.setData({
       scrollTop: this.data.scrollTop + 10
     })
+  },
+
+  jumpToList: function (e){
+    console.log('dddddddd')
+      wx.navigateTo({
+        url: '../userlist/userlist'
+      })
+  },
+  shareClick: function (e) {
+
   }
 })
