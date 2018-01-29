@@ -104,7 +104,6 @@ Page({
   },
 
   jumpToList: function (e){
-    console.log('dddddddd')
       wx.navigateTo({
         url: '../userlist/userlist'
       })

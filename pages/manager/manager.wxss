@@ -1,17 +1,18 @@
 .home-view1{
-    margin-top: 10rpx;
+    /*  */
     display: inline-block;
 } 
 .home-view3{
     /* margin-top: 5rpx; */
     /* margin-left: 10rpx; */
     display: inline-block;
-    width: 15.7%;
-    height: 105rpx;
+    width: 120rpx;
+    /* height: 105rpx; */
     /* background-color:green; */
     text-align:center;
 } 
 .userlist-image{
+  margin-top: 10rpx;
   width: 80rpx;
   height: 80rpx;
   border-radius:50%;
@@ -27,4 +28,15 @@
     white-space: nowrap;
     text-overflow:ellipsis;
     text-align:center;
+}
+.allUser-view{
+  background-color:#fff;
+  display:block;
+  position: fixed;
+  bottom: 0rpx;
+  width: 100%;
+}
+.groud-name-view{
+  width:25%;
+
 }

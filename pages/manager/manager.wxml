@@ -1,24 +1,36 @@
 <!--pages/manager/manager.wxml-->
-<view class='main' style='text-align:center;'>
-<text style='font-size:30rpx;color:#939293;width:100%;'>男:16人 女:8人 总人数:24人</text>
+<view class='main' style='text-align:center;display:block'>
 
-<view  class="home-view1">
-    <view bindtap='chooseUser' wx:for="{{userArr}}" data-name='{{item.name}}' class="home-view3"> 
-      <image  class="userlist-image" src="{{item.icon}}"></image>
-      <text class="userlist-name" style="color:{{item.name==1?'#F17272':'#3CADED'}};">{{item.name}}</text>
-    </view>
-</view>
 
-<view class='group-view'>
-  <view style='border:1px solid #F00;width:100%; display:inline-flex'>
-    <text style='width:150rpx'>第一组</text>
-    <view  class="home-view1">
-      <view wx:for="{{firstArr}}" class="home-view3-inline" style="display:inline-block;width: 25%;"> 
-        <image  class="userlist-image" src="{{item.icon}}"></image>
-        <text class="userlist-name" style="color:{{item.name==1?'#F17272':'#3CADED'}};">{{item.name}}</text>
+
+
+  <view class='group-view' style='display:block'>
+    <view bindtap='selectedGroup' wx:for="{{groupArr}}" data-index='{{index}}' style="width:99%; display:inline-flex; margin-top: 10rpx;border:{{selectGroup==index?'5rpx solid #5196F8':'5rpx solid #BEBEBE'}};">
+      <text class='groud-name-view' style="line-height:{{groupArr[index].length>4?'280rpx':'140rpx'}};background-color:{{selectGroup==index?'#5196F8':'#BEBEBE'}};color:{{selectGroup==index?'#fff':'#E0E0E0'}};">第 {{index+1}} 组</text>
+      <view  class="home-view1" style='width:75%;'>
+        <view bindtap='deleteUser' wx:for="{{groupArr[index]}}" class="home-view3"  data-name='{{item.name}}' style="display:inline-block;width: 135rpx;"> 
+          <image  class="userlist-image" src="{{item.icon}}"></image>
+          <text class="userlist-name" style="color:{{item.name==1?'#F17272':'#3CADED'}};">{{item.name}}</text>
+        </view>
       </view>
     </view>
+    <text bindtap='addGroup' style='height:70rpx;width:100%;color:#BEBEBE;display:block'>+</text>
+    <view style='height:200rpx;width:100%;'></view>
   </view>
-</view>
+
+  <view class='allUser-view' >
+    <text style='font-size:30rpx;color:#939293;width:100%;display:block'>男:16人 女:8人 总人数:24人</text>
+
+    <view  class="home-view1">
+        <view bindtap='chooseUser' wx:for="{{userArr}}" data-name='{{item.name}}' class="home-view3"> 
+          <image  class="userlist-image" src="{{item.icon}}"></image>
+          <text class="userlist-name" style="color:{{item.name==1?'#F17272':'#3CADED'}};">{{item.name}}</text>
+        </view>
+    </view>
+    <text wx:if="{{userArr.length==0}}" bindtap='sendToUser' style='height:100rpx;line-height:100rpx;width:100%;background-color:#5196F8;color:#fff;display:block'>下发通知</text>
+  </view>
+
+
+
 
 </view>

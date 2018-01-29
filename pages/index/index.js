@@ -116,6 +116,11 @@ Page({
         console.log(res.errMsg)
       }
     })
+  },
+  jumpManager: function (e) {
+    wx.navigateTo({
+      url: '../manager/manager'
+    })
   }
 
 })
