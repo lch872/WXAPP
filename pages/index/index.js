@@ -3,6 +3,7 @@
 const app = getApp()
 Page({
   data: {
+    isApply:false,
     pickerData:[
       {
         "section":0,
@@ -70,18 +71,27 @@ Page({
     
   },
 
-  bindViewTap: function () {
-
+  formSubmit: function (e) {
+    if (this.data.isApply) {
+      return
+    }
+    wx.setStorageSync('formId', e.detail.formId)
+    console.log('form发生了submit事件，携带formId数据为：', e.detail.formId)
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
     wx.showLoading({
       title: '加载中',
     })
-
+    var that = this
     setTimeout(function () {
+      
       wx.hideLoading()
       wx.showToast({
         title: '报名成功',
         icon: 'success',
         duration: 2000
+      })
+      that.setData({
+        isApply: true
       })
     }, 2000)
 
@@ -99,18 +109,32 @@ Page({
 
     //   }
     // })
-    console.log("dddddddd")
     this.setData({
       enablePicker: !this.data.enablePicker
     })
-    console.log(this.data.enablePicker)
   },
   cancelApply: function (e) {
+
+    var that = this
     wx.showActionSheet({
       itemList: ['取消报名'],
       itemColor: "#E43A37",
       success: function (res) {
-        console.log(res.tapIndex)
+        wx.showLoading({
+          title: '请稍后',
+        })
+        setTimeout(function () {
+          wx.hideLoading()
+          wx.showToast({
+            title: '取消成功',
+            icon: 'success',
+            duration: 2000
+          })
+
+          that.setData({
+            isApply: false
+          })
+        }, 2000)
       },
       fail: function (res) {
         console.log(res.errMsg)

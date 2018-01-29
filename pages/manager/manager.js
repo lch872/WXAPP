@@ -1,4 +1,6 @@
 // pages/manager/manager.js
+
+var app = getApp();
 Page({
 
   /**
@@ -9,29 +11,29 @@ Page({
     groupArr:[[]],
     userArr: [
       { "name": "朵朵兰是兰不是南", "icon": "../images/icon.jpg" },
-      { "name": "蚊子Yokako", "icon": "../images/icon.jpg" },
-      { "name": "12345", "icon": "../images/icon.jpg" },
-      { "name": "名族风", "icon": "../images/icon.jpg" },
-      { "name": "好怀念", "icon": "../images/icon.jpg" },
-      { "name": "1", "icon": "../images/icon.jpg" },
-      { "name": "地方v等待", "icon": "../images/icon.jpg" },
-      { "name": "red", "icon": "../images/icon.jpg" }, 
-      { "name": "朵朵兰是兰不是南", "icon": "../images/icon.jpg" },
-      { "name": "蚊子Yokako", "icon": "../images/icon.jpg" },
-      { "name": "1234567", "icon": "../images/icon.jpg" },
-      { "name": "绿豆糕", "icon": "../images/icon.jpg" },
-      { "name": "躲躲藏藏", "icon": "../images/icon.jpg" },
-      { "name": "1", "icon": "../images/icon.jpg" },
-      { "name": "0", "icon": "../images/icon.jpg" },
-      { "name": "red", "icon": "../images/icon.jpg" },
-      { "name": "咯瞌睡", "icon": "../images/icon.jpg" },
-      { "name": "蚊子Yokako", "icon": "../images/icon.jpg" },
-      { "name": "1", "icon": "../images/icon.jpg" },
-      { "name": "1😄😄😄", "icon": "../images/icon.jpg" },
-      { "name": "孙悟空", "icon": "../images/icon.jpg" },
-      { "name": "1", "icon": "../images/icon.jpg" },
-      { "name": "猪八戒", "icon": "../images/icon.jpg" },
-      { "name": "red", "icon": "../images/icon.jpg" },
+      // { "name": "蚊子Yokako", "icon": "../images/icon.jpg" },
+      // { "name": "12345", "icon": "../images/icon.jpg" },
+      // { "name": "名族风", "icon": "../images/icon.jpg" },
+      // { "name": "好怀念", "icon": "../images/icon.jpg" },
+      // { "name": "1", "icon": "../images/icon.jpg" },
+      // { "name": "地方v等待", "icon": "../images/icon.jpg" },
+      // { "name": "red", "icon": "../images/icon.jpg" }, 
+      // { "name": "朵朵兰是兰不是南", "icon": "../images/icon.jpg" },
+      // { "name": "蚊子Yokako", "icon": "../images/icon.jpg" },
+      // { "name": "1234567", "icon": "../images/icon.jpg" },
+      // { "name": "绿豆糕", "icon": "../images/icon.jpg" },
+      // { "name": "躲躲藏藏", "icon": "../images/icon.jpg" },
+      // { "name": "1", "icon": "../images/icon.jpg" },
+      // { "name": "0", "icon": "../images/icon.jpg" },
+      // { "name": "red", "icon": "../images/icon.jpg" },
+      // { "name": "咯瞌睡", "icon": "../images/icon.jpg" },
+      // { "name": "蚊子Yokako", "icon": "../images/icon.jpg" },
+      // { "name": "1", "icon": "../images/icon.jpg" },
+      // { "name": "1😄😄😄", "icon": "../images/icon.jpg" },
+      // { "name": "孙悟空", "icon": "../images/icon.jpg" },
+      // { "name": "1", "icon": "../images/icon.jpg" },
+      // { "name": "猪八戒", "icon": "../images/icon.jpg" },
+      // { "name": "red", "icon": "../images/icon.jpg" },
     ],
   },
   chooseUser: function (e) {
@@ -85,6 +87,51 @@ Page({
 
   },
   sendToUser: function (e) {
+    var fId = wx.getStorageSync('formId')
+    var fObj = e.detail.value;
+    var l = 'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=' + app.globalData.wxData;
+    var d = {
+      touser: wx.getStorageSync('userOpenData').openid,
+      template_id: 'XcG32liQDgwwxzuf7rOE-oDTzNGXiul6HDxVBFmCUp8',//这个是1、申请的模板消息id，  
+      page: '/pages/index/index',
+      form_id: fId,
+      data: {
+        "keyword1": {
+          "value": '小程序测试模版',
+          "color": "#4a4a4a"
+        },
+        "keyword2": {
+          "value": '呜呜呜呜多',
+          "color": "#9b9b9b"
+        },
+        "keyword3": {
+          "value": new Date().getDate(),
+          "color": "#9b9b9b"
+        }
+      }
+    }  
+
+    wx.request({
+      url: l,
+      data: d,
+      method: 'POST',
+      success: function (res) {
+        console.log("push msg");
+        console.log(res);
+        wx.showActionSheet({
+          itemList: [res.data.errmsg],
+          itemColor: "#E43A37",
+        })
+
+      },
+      fail: function (err) {
+        // fail  
+        console.log("push err")
+        console.log(err);
+      }
+    });  
+
+    return
     wx.showLoading({
       title: '加载中',
     })
