@@ -91,7 +91,7 @@ Page({
     var fObj = e.detail.value;
     var l = 'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=' + app.globalData.wxData;
     var d = {
-      touser: wx.getStorageSync('userOpenData').openid,
+      touser: wx.getStorageSync('userOpenData'),
       template_id: 'XcG32liQDgwwxzuf7rOE-oDTzNGXiul6HDxVBFmCUp8',//这个是1、申请的模板消息id，  
       page: '/pages/index/index',
       form_id: fId,

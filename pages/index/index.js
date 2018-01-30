@@ -21,7 +21,6 @@ Page({
     motto: '遇见更好的自己 ：）',
     userInfo: {},
     index: 0,
-    index2: 0,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -33,8 +32,27 @@ Page({
         hasUserInfo: true
       })
     } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
+      var that = this
+      wx.getSetting({
+        success(res) {
+          if (!res.authSetting['scope.userInfo']) {
+            wx.authorize({
+              scope: 'scope.userInfo',
+              success() {
+                wx.getUserInfo({
+                  success: res => {
+                    app.globalData.userInfo = res.userInfo
+                    that.setData({
+                      userInfo: res.userInfo,
+                      hasUserInfo: true
+                    })
+                  }
+                })
+              }
+            })
+          }
+        }
+      })
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res.userInfo,
@@ -55,7 +73,6 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -72,12 +89,15 @@ Page({
   },
 
   formSubmit: function (e) {
-    if (this.data.isApply) {
+    if (this.data.isApply || !this.data.hasUserInfo) {
       return
     }
     wx.setStorageSync('formId', e.detail.formId)
     console.log('form发生了submit事件，携带formId数据为：', e.detail.formId)
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+
+
+
     wx.showLoading({
       title: '加载中',
     })
@@ -95,20 +115,23 @@ Page({
       })
     }, 2000)
 
+    var dat = app.globalData.userInfo
+    dat['formId'] = e.detail.formId
+    dat['openId'] = wx.getStorageSync('userOpenData'),
     
-    // wx.request({
-    //   url: 'http://localhost:8080/wx/apply',
-    //   method: 'POST',
-    //   data: app.globalData.userInfo,
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded' // 默认值
-    //   },
-    //   success: function (res) {
-    //     console.log(res.data)
-    //     console.log(app.globalData.userInfo)
+    wx.request({
+      url: 'http://localhost:8080/wx/apply',
+      method: 'POST',
+      data: dat,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data)
+        console.log(app.globalData.userInfo)
 
-    //   }
-    // })
+      }
+    })
     this.setData({
       enablePicker: !this.data.enablePicker
     })
