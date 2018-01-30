@@ -34,12 +34,15 @@ App({
               this.globalData.userInfo = res.userInfo
               
               wx.request({
-                url: 'http://localhost:8080/wx/apply',
+                url: 'http://localhost:8080/wx/adduser',
                 method: 'POST',
                 data: u,
                 header: {'content-type': 'application/x-www-form-urlencoded'},
                 success: function (res) {
                   console.log(res)
+                  if(res.data.OK){
+                    console.log('88888888888')
+                  }
                 }
               })
 

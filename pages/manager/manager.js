@@ -9,34 +9,10 @@ Page({
   data: {
     selectGroup:0,
     groupArr:[[]],
-    userArr: [
-      { "name": "朵朵兰是兰不是南", "icon": "../images/icon.jpg" },
-      // { "name": "蚊子Yokako", "icon": "../images/icon.jpg" },
-      // { "name": "12345", "icon": "../images/icon.jpg" },
-      // { "name": "名族风", "icon": "../images/icon.jpg" },
-      // { "name": "好怀念", "icon": "../images/icon.jpg" },
-      // { "name": "1", "icon": "../images/icon.jpg" },
-      // { "name": "地方v等待", "icon": "../images/icon.jpg" },
-      // { "name": "red", "icon": "../images/icon.jpg" }, 
-      // { "name": "朵朵兰是兰不是南", "icon": "../images/icon.jpg" },
-      // { "name": "蚊子Yokako", "icon": "../images/icon.jpg" },
-      // { "name": "1234567", "icon": "../images/icon.jpg" },
-      // { "name": "绿豆糕", "icon": "../images/icon.jpg" },
-      // { "name": "躲躲藏藏", "icon": "../images/icon.jpg" },
-      // { "name": "1", "icon": "../images/icon.jpg" },
-      // { "name": "0", "icon": "../images/icon.jpg" },
-      // { "name": "red", "icon": "../images/icon.jpg" },
-      // { "name": "咯瞌睡", "icon": "../images/icon.jpg" },
-      // { "name": "蚊子Yokako", "icon": "../images/icon.jpg" },
-      // { "name": "1", "icon": "../images/icon.jpg" },
-      // { "name": "1😄😄😄", "icon": "../images/icon.jpg" },
-      // { "name": "孙悟空", "icon": "../images/icon.jpg" },
-      // { "name": "1", "icon": "../images/icon.jpg" },
-      // { "name": "猪八戒", "icon": "../images/icon.jpg" },
-      // { "name": "red", "icon": "../images/icon.jpg" },
-    ],
+    userArr: [],
   },
   chooseUser: function (e) {
+    console.log(e)
     this.findDelAdd(e)
     console.log(this.data.groupArr)
     this.setData({
@@ -52,9 +28,13 @@ Page({
     })
   },
   findDelAdd: function (e) {
-    var clickName = e.currentTarget.dataset.name
+    var openId = e.currentTarget.dataset.openid
     for (var j = 0; j < this.data.userArr.length; j++) {
-      if (this.data.userArr[j].name == clickName) {
+
+      console.log('openId: ', openId)
+      console.log('this.openId: ', this.data.userArr[j].openId)
+
+      if (this.data.userArr[j].openId == openId) {
         this.data.groupArr[this.data.selectGroup].push(this.data.userArr[j])
         this.data.userArr.splice(j, 1);
         return
@@ -62,9 +42,9 @@ Page({
     }
   },
   delAdd: function (e) {
-    var clickName = e.currentTarget.dataset.name
+    var openId = e.currentTarget.dataset.openid
     for (var j = 0; j < this.data.groupArr[this.data.selectGroup].length; j++) {
-      if (this.data.groupArr[this.data.selectGroup][j].name == clickName) {
+      if (this.data.groupArr[this.data.selectGroup][j].openId == openId) {
         this.data.userArr.push(this.data.groupArr[this.data.selectGroup][j])
         this.data.groupArr[this.data.selectGroup].splice(j, 1);
         return
@@ -150,7 +130,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this
+    wx.request({
+      url: 'http://localhost:8080/wx/applyUser',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          userArr:res.data
+        })
+        if (res.data.OK) {
+          console.log('88888888888')
+        }
+      }
+    })
   },
 
   /**
