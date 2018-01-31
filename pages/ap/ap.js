@@ -1,26 +1,31 @@
 // pages/ap/ap.js
 const app = getApp()
-var dataArrAll={}
+var isApplied = 0
 
 Page({
   data: {
-    dataArr: dataArrAll
+    dataArr: {}
   },
 
   onLoad: function (options) {
+
+   
     wx.showShareMenu({
       withShareTicket: true
     })
     var that = this
+
+    var openIds = wx.getStorageSync('userOpenData')
+
     wx.request({
-      url: 'http://localhost:8080/wx/main?',
+      url: 'http://' + getApp().serverAddr+':8080/wx/main',
+     
       data:{
-        openId: app.globalData.userInfo.openId,
+        openId: openIds,
         actId:'1'
       },
       success: function (res) {
         console.log(res)
-        // dataArrAll=res.data
         that.setData({
           dataArr: res.data
         })
@@ -34,10 +39,23 @@ Page({
   },
   getDataArr: function(e){
     return this.data.dataArr
+  },
+  onShow: function (e) {
+    console.log(isApplied)
+    this.data.dataArr.isApply = Number(isApplied)
+    this.setData({
+      dataArr: this.data.dataArr
+    })
+    console.log(this.data.dataArr)
   }
 })
 
 
-// module.exports = {
-//   dataArr: this.getDataArr,
-// }
+function setApplied (e) {
+  isApplied = e
+}
+module.exports={
+  Applied: isApplied,
+  setApplied: setApplied
+}
+

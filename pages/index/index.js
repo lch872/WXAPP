@@ -1,7 +1,7 @@
 //index.js
 
 const app = getApp()
-// var common = require('../ap/ap.js')
+var common = require('../ap/ap.js')
 
 Page({
   data: {
@@ -28,7 +28,7 @@ Page({
   },
  
   onLoad: function (option) {
-    console.log(option.isApply)
+    console.log(Number(option.isApply))
     this.setData({
       isApply: Number(option.isApply)
     })
@@ -137,7 +137,7 @@ Page({
   applyRequest: function (actID, openid, isConfirm) {
     var that = this
     wx.request({
-      url: 'http://localhost:8080/wx/apply',
+      url: 'http://' + getApp().serverAddr +':8080/wx/apply',
       data: {
         openId: openid,
         activity: actID,
@@ -152,7 +152,8 @@ Page({
             icon: 'success',
             duration: 2000
           })
-
+          common.setApplied(isConfirm)
+          console.log(isConfirm)
           that.setData({
             isApply: parseInt(isConfirm)
           })

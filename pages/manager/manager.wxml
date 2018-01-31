@@ -5,8 +5,8 @@
 
 
   <view class='group-view' style='display:block'>
-    <view bindtap='selectedGroup' wx:for="{{groupArr}}" data-index='{{index}}' style="width:99%; display:inline-flex; margin-top: 10rpx;border:{{selectGroup==index?'5rpx solid #5196F8':'5rpx solid #BEBEBE'}};">
-      <text class='groud-name-view' style="line-height:{{groupArr[index].length>4?'280rpx':'140rpx'}};background-color:{{selectGroup==index?'#5196F8':'#BEBEBE'}};color:{{selectGroup==index?'#fff':'#E0E0E0'}};">第 {{index+1}} 组</text>
+    <view bindtap='selectedGroup' wx:for="{{groupArr}}" data-index='{{index}}' style="width:99%; display:inline-flex; margin-top: 4rpx;border:{{selectGroup==index?'5rpx solid #5196F8':(userArr.length!=0?'5rpx solid #BEBEBE':'5rpx solid '+ blockColor[index])}};">
+      <text class='groud-name-view' style="line-height:{{groupArr[index].length>4?'240rpx':'130rpx'}};background-color:{{userArr.length!=0?(selectGroup==index?'#5196F8':'#BEBEBE'):blockColor[index]}};color:{{userArr.length!=0?(selectGroup==index?'#fff':'#E0E0E0'):'#fff'}};">第 {{index+1}} 组</text>
       <view  class="home-view1" style='width:75%;'>
         <view bindtap='deleteUser' wx:for="{{groupArr[index]}}" class="home-view3"  data-openId='{{item.openId}}' style="display:inline-block;width: 135rpx;"> 
           <image  class="userlist-image" src="{{item.avatarUrl}}"></image>
@@ -21,7 +21,7 @@
   <view class='allUser-view' >
     <text style='font-size:30rpx;color:#939293;width:100%;display:block'>男:16人 女:8人 总人数:24人</text>
 
-    <view  class="home-view1">
+    <view  wx:if="{{userArr.length!=0}}" class="home-view1">
         <view bindtap='chooseUser' wx:for="{{userArr}}" data-openId='{{item.openId}}' class="home-view3"> 
           <image  class="userlist-image" src="{{item.avatarUrl}}"></image>
           <text class="userlist-name" style="color:{{item.gender==2?'#F17272':'#3CADED'}};">{{item.nickName}}</text>

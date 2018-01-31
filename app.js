@@ -4,7 +4,7 @@ App({
     // 展示本地存储能力
     var user = wx.getStorageSync('userOpenData') || undefined;  
     if (user == undefined) {
-
+      
       wx.login({
         success: res => {
           var appid = 'wx2fdfd17e37781b91';
@@ -15,6 +15,7 @@ App({
             success: function (res) {
               console.log('success OpenId：', res.data.openid)
               wx.setStorageSync('userOpenData', res.data.openid)
+              console.log('save success')
             }
           })
         }
@@ -34,7 +35,7 @@ App({
               this.globalData.userInfo = res.userInfo
               
               wx.request({
-                url: 'http://localhost:8080/wx/adduser',
+                url: 'http://' + getApp().serverAddr+':8080/wx/adduser',
                 method: 'POST',
                 data: u,
                 header: {'content-type': 'application/x-www-form-urlencoded'},
@@ -48,6 +49,7 @@ App({
 
 
               if (this.userInfoReadyCallback) {
+                console.log('---------')
                 this.userInfoReadyCallback(res)
               }
             }
@@ -60,5 +62,6 @@ App({
     wxData: '6_PPcU_jmNmpYC5ekhmc_pMgmS6ffWCJkyVr6HHrcBcoZaw6SrbYR1H8zf4dehpqh9DOjF8ud5UGpe3V46kfTOpJ2Vy-OSOmc5Y9ijM4QwcDmhvMn9YgGRHmZW_-2cZL_nTvBFZrdcE1pGwuH4VBAjAHAOUT',
     userInfo: null,
     dbId:null
-  }
+  },
+  serverAddr:'192.168.0.102'
 })

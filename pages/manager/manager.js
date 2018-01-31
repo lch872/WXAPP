@@ -2,14 +2,11 @@
 
 var app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     selectGroup:0,
     groupArr:[[]],
     userArr: [],
+    blockColor: ['#F5A9BC', '#F5A9E1', '#A9D0F5', '#BCF5A9', '#A9F5D0', '#A9E2F3', '#A9BCF5', '#F5D0A9', '#F5BCA9', '#F5A9BC', '#F5A9E1', '#A9D0F5', '#BCF5A9', '#A9F5D0', '#A9E2F3', '#A9BCF5', '#F5D0A9', '#F5BCA9']
   },
   chooseUser: function (e) {
     console.log(e)
@@ -132,7 +129,7 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: 'http://localhost:8080/wx/applyUser',
+      url: 'http://' + getApp().serverAddr +':8080/wx/applyUser',
       success: function (res) {
         console.log(res)
         that.setData({

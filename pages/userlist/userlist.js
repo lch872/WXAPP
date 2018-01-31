@@ -11,7 +11,7 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: 'http://localhost:8080/wx/applyUser',
+      url: 'http://' + getApp().serverAddr +' :8080/wx/applyUser',
       success: function (res) {
         console.log(res.data)
         that.setData({
