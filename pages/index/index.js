@@ -1,9 +1,11 @@
 //index.js
-//获取应用实例
+
 const app = getApp()
+// var common = require('../ap/ap.js')
+
 Page({
   data: {
-    isApply:false,
+    isApply: false,
     pickerData:[
       {
         "section":0,
@@ -25,7 +27,12 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
  
-  onLoad: function () {
+  onLoad: function (option) {
+    console.log(option.isApply)
+    this.setData({
+      isApply: Number(option.isApply)
+    })
+    console.log(option.isApply)
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -93,71 +100,29 @@ Page({
       return
     }
     wx.setStorageSync('formId', e.detail.formId)
-    console.log('form发生了submit事件，携带formId数据为：', e.detail.formId)
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    wx.showLoading({title: '加载中'})
 
-
-
-    wx.showLoading({
-      title: '加载中',
-    })
-    var that = this
-    setTimeout(function () {
-      
-      wx.hideLoading()
-      wx.showToast({
-        title: '报名成功',
-        icon: 'success',
-        duration: 2000
-      })
-      that.setData({
-        isApply: true
-      })
-    }, 2000)
-
-    var dat = app.globalData.userInfo
-    dat['formId'] = e.detail.formId
-    dat['openId'] = wx.getStorageSync('userOpenData'),
+    var formId = e.detail.formId
+    var openid = wx.getStorageSync('userOpenData')
     
-    wx.request({
-      url: 'http://localhost:8080/wx/apply',
-      method: 'POST',
-      data: dat,
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' // 默认值
-      },
-      success: function (res) {
-        console.log(res.data)
-        console.log(app.globalData.userInfo)
+    this.applyRequest('1', openid, '1')
 
-      }
-    })
     this.setData({
       enablePicker: !this.data.enablePicker
     })
   },
   cancelApply: function (e) {
-
     var that = this
     wx.showActionSheet({
       itemList: ['取消报名'],
       itemColor: "#E43A37",
       success: function (res) {
-        wx.showLoading({
-          title: '请稍后',
-        })
-        setTimeout(function () {
-          wx.hideLoading()
-          wx.showToast({
-            title: '取消成功',
-            icon: 'success',
-            duration: 2000
-          })
 
-          that.setData({
-            isApply: false
-          })
-        }, 2000)
+        var openid = wx.getStorageSync('userOpenData')
+
+        wx.showLoading({title: '加载中'})
+
+        that.applyRequest('1', openid, '0')
       },
       fail: function (res) {
         console.log(res.errMsg)
@@ -167,6 +132,32 @@ Page({
   jumpManager: function (e) {
     wx.navigateTo({
       url: '../manager/manager'
+    })
+  },
+  applyRequest: function (actID, openid, isConfirm) {
+    var that = this
+    wx.request({
+      url: 'http://localhost:8080/wx/apply',
+      data: {
+        openId: openid,
+        activity: actID,
+        confirm: isConfirm
+      },
+      success: function (res) {
+        if (res.data.OK) {
+
+          wx.hideLoading()
+          wx.showToast({
+            title: '操作成功',
+            icon: 'success',
+            duration: 2000
+          })
+
+          that.setData({
+            isApply: parseInt(isConfirm)
+          })
+        }
+      }
     })
   }
 

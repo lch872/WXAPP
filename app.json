@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/manager/manager",
-    "pages/ap/ap",
     
+    "pages/ap/ap",
+    "pages/manager/manager",
     "pages/index/index",
     "pages/logs/logs",
     "pages/userlist/userlist"

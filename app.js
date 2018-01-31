@@ -39,7 +39,7 @@ App({
                 data: u,
                 header: {'content-type': 'application/x-www-form-urlencoded'},
                 success: function (res) {
-                  console.log(res)
+                  // console.log(res)
                   if(res.data.OK){
                     console.log('88888888888')
                   }

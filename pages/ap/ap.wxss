@@ -105,7 +105,6 @@ page {
 .bottom-view-button{
   width: 100%;
   height: 100%;
-  background-color: #5196F8;
   color: white;
   text-align: center;
   vertical-align:middle;
