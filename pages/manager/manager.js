@@ -70,7 +70,7 @@ Page({
     var d = {
       touser: wx.getStorageSync('userOpenData'),
       template_id: 'XcG32liQDgwwxzuf7rOE-oDTzNGXiul6HDxVBFmCUp8',//这个是1、申请的模板消息id，  
-      page: '/pages/index/index',
+      page: '/pages/apply/apply',
       form_id: fId,
       data: {
         "keyword1": {
@@ -129,7 +129,7 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: 'http://' + getApp().serverAddr +':8080/wx/applyUser',
+      url: 'http://' + getApp().serverAddr +'/wx/applied',
       success: function (res) {
         console.log(res)
         that.setData({

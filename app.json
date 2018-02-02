@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/main/main",
+    "pages/detail/detail",
     "pages/manager/manager",
-    "pages/ap/ap",
-    
-    "pages/index/index",
-    "pages/logs/logs",
+    "pages/apply/apply",
     "pages/userlist/userlist"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

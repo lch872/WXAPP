@@ -1,7 +1,7 @@
 //index.js
 
 const app = getApp()
-var common = require('../ap/ap.js')
+var common = require('../detail/detail.js')
 
 Page({
   data: {
@@ -137,7 +137,7 @@ Page({
   applyRequest: function (actID, openid, isConfirm) {
     var that = this
     wx.request({
-      url: 'http://' + getApp().serverAddr +':8080/wx/apply',
+      url: 'http://' + getApp().serverAddr +'/wx/apply',
       data: {
         openId: openid,
         activity: actID,

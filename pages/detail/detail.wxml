@@ -50,5 +50,5 @@
 
 
 <view class='bottom-view'>
-  <navigator class='bottom-view-button' url="../index/index?isApply={{dataArr.isApply}}" hover-class="navigator-hover" style="background-color:{{dataArr.isApply?'#5196F8':'#5196F8'}}">{{dataArr.isApply?'已经报名，等待通知':'现在报名'}}</navigator>
+  <navigator class='bottom-view-button' url="../apply/apply?isApply={{dataArr.isApply}}" hover-class="navigator-hover" style="background-color:{{dataArr.isApply?'#5196F8':'#5196F8'}}">{{dataArr.isApply?'已经报名，等待通知':'现在报名'}}</navigator>
 </view>

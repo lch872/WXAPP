@@ -3,6 +3,8 @@ App({
   onLaunch: function () {
     // 展示本地存储能力
     var user = wx.getStorageSync('userOpenData') || undefined;  
+    console.log(user)
+
     if (user == undefined) {
       
       wx.login({
@@ -35,12 +37,12 @@ App({
               this.globalData.userInfo = res.userInfo
               
               wx.request({
-                url: 'http://' + getApp().serverAddr+':8080/wx/adduser',
+                url: 'http://' + getApp().serverAddr+'/wx/adduser',
                 method: 'POST',
                 data: u,
                 header: {'content-type': 'application/x-www-form-urlencoded'},
                 success: function (res) {
-                  // console.log(res)
+
                   if(res.data.OK){
                     console.log('88888888888')
                   }
@@ -63,5 +65,5 @@ App({
     userInfo: null,
     dbId:null
   },
-  serverAddr:'192.168.0.102'
+  serverAddr: 0 ? 'localhost:8080' :'192.168.1.150:8080'
 })

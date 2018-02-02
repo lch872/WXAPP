@@ -1,4 +1,4 @@
-// pages/ap/ap.js
+// pages/detail/detail.js
 const app = getApp()
 var isApplied = 0
 
@@ -8,24 +8,21 @@ Page({
   },
 
   onLoad: function (options) {
-
-   
     wx.showShareMenu({
       withShareTicket: true
     })
     var that = this
 
     var openIds = wx.getStorageSync('userOpenData')
-
+    console.log(options.actId)
     wx.request({
-      url: 'http://' + getApp().serverAddr+':8080/wx/main',
+      url: 'http://' + getApp().serverAddr +'/wx/detail',
      
       data:{
         openId: openIds,
-        actId:'1'
+        actId: options.actId
       },
       success: function (res) {
-        console.log(res)
         that.setData({
           dataArr: res.data
         })
