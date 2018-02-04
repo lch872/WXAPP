@@ -11,7 +11,7 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: 'http://' + getApp().serverAddr +'/wx/applied',
+      url: getApp().serverAddr +'/wx/applied',
       success: function (res) {
         console.log(res.data)
         that.setData({

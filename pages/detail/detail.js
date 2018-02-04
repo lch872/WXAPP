@@ -8,17 +8,16 @@ Page({
   },
 
   onLoad: function (options) {
+    // wx.showToast({ title: 'onLoad', icon: 'success', duration: 2000 })
     wx.showShareMenu({
       withShareTicket: true
     })
-    var that = this
 
+    var that = this
     var openIds = wx.getStorageSync('userOpenData')
-    console.log(options.actId)
     wx.request({
-      url: 'http://' + getApp().serverAddr +'/wx/detail',
-     
-      data:{
+      url: getApp().serverAddr + '/wx/detail',
+      data: {
         openId: openIds,
         actId: options.actId
       },
@@ -26,8 +25,17 @@ Page({
         that.setData({
           dataArr: res.data
         })
+      },
+      fail: function (res) {
+
+        var dd = {}
+        dd.detail = res.valueOf()
+        that.setData({
+          dataArr: dd
+        })
       }
     })
+    
   },
   jumpToList: function (e){
       wx.navigateTo({

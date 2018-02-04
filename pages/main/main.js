@@ -5,27 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    json:[]
+    json: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: 'http://' + getApp().serverAddr + '/wx/main',
-
+      url: getApp().serverAddr + '/wx/main',
       success: function (res) {
-       
         that.setData({
           json: res.data
         })
-      }
+      },
     })
   },
   onPullDownRefresh: function () {
-  
+    console.log("pppppp")
   },
   onReachBottom: function () {
   

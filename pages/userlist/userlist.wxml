@@ -2,7 +2,7 @@
 <view wx:for="{{userArr}}" class="home-view1">
     <view class="home-view3"> 
         <image  class="userlist-image" src="{{item.avatarUrl}}"></image>
-        <text class="userlist-name" >{{item.nickName}}</text>
+        <text class="userlist-name" style="color:{{item.gender==2?'#F17272':'#3CADED'}}">{{item.nickName}}</text>
     </view>
     <view class="userlist-line"></view>
 </view>

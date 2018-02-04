@@ -1,23 +1,26 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function (e) {
+    // return
     // 展示本地存储能力
     var user = wx.getStorageSync('userOpenData') || undefined;  
     console.log(user)
 
-    if (user == undefined) {
+    if (user == undefined || user == 'null') {
+      console.log("user == undefined")
       
       wx.login({
         success: res => {
-          var appid = 'wx2fdfd17e37781b91';
-          var secret = 'ddc696a333d44c713d8723f26d0e8182';
-
+          console.log("wx.login"); 
+          console.log(res); 
+   
           wx.request({
-            url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secret +'&grant_type=authorization_code&js_code=' + res.code,
+            url: getApp().serverAddr + '/wx/getOpenId',
+            data: { js_code:res.code},
             success: function (res) {
               console.log('success OpenId：', res.data.openid)
               wx.setStorageSync('userOpenData', res.data.openid)
-              console.log('save success')
+              console.log(res)
             }
           })
         }
@@ -37,7 +40,7 @@ App({
               this.globalData.userInfo = res.userInfo
               
               wx.request({
-                url: 'http://' + getApp().serverAddr+'/wx/adduser',
+                url: getApp().serverAddr+'/wx/adduser',
                 method: 'POST',
                 data: u,
                 header: {'content-type': 'application/x-www-form-urlencoded'},
@@ -65,5 +68,7 @@ App({
     userInfo: null,
     dbId:null
   },
-  serverAddr: 0 ? 'localhost:8080' :'192.168.1.150:8080'
+  serverAddr: 0 ? 'https://lch872.3322.org' : 'http://192.168.0.102:8080',
+  
+
 })

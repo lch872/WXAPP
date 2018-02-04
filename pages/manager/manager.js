@@ -6,6 +6,8 @@ Page({
     selectGroup:0,
     groupArr:[[]],
     userArr: [],
+    boy:0,
+    girl:0,
     blockColor: ['#F5A9BC', '#F5A9E1', '#A9D0F5', '#BCF5A9', '#A9F5D0', '#A9E2F3', '#A9BCF5', '#F5D0A9', '#F5BCA9', '#F5A9BC', '#F5A9E1', '#A9D0F5', '#BCF5A9', '#A9F5D0', '#A9E2F3', '#A9BCF5', '#F5D0A9', '#F5BCA9']
   },
   chooseUser: function (e) {
@@ -64,64 +66,23 @@ Page({
 
   },
   sendToUser: function (e) {
-    var fId = wx.getStorageSync('formId')
-    var fObj = e.detail.value;
-    var l = 'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=' + app.globalData.wxData;
-    var d = {
-      touser: wx.getStorageSync('userOpenData'),
-      template_id: 'XcG32liQDgwwxzuf7rOE-oDTzNGXiul6HDxVBFmCUp8',//这个是1、申请的模板消息id，  
-      page: '/pages/apply/apply',
-      form_id: fId,
-      data: {
-        "keyword1": {
-          "value": '小程序测试模版',
-          "color": "#4a4a4a"
-        },
-        "keyword2": {
-          "value": '呜呜呜呜多',
-          "color": "#9b9b9b"
-        },
-        "keyword3": {
-          "value": new Date().getDate(),
-          "color": "#9b9b9b"
-        }
-      }
-    }  
-
+    var openId = wx.getStorageSync('userOpenData')
+    wx.showLoading({ title: '加载中' })
     wx.request({
-      url: l,
-      data: d,
-      method: 'POST',
-      success: function (res) {
-        console.log("push msg");
-        console.log(res);
-        wx.showActionSheet({
-          itemList: [res.data.errmsg],
-          itemColor: "#E43A37",
-        })
-
+      url: getApp().serverAddr + '/wx/sendMessage',
+      data: {
+        openId: openId
       },
-      fail: function (err) {
-        // fail  
-        console.log("push err")
-        console.log(err);
+      success: function (res) {
+        wx.hideLoading()
+        wx.showToast({
+          title: '发送成功',
+          icon: 'success',
+          duration: 2000
+        })
       }
     });  
-
-    return
-    wx.showLoading({
-      title: '加载中',
-    })
-
-    setTimeout(function () {
-      wx.hideLoading()
-      wx.showToast({
-        title: '发送成功',
-        icon: 'success',
-        duration: 2000
-      })
-    }, 2000)
-  
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -129,10 +90,16 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: 'http://' + getApp().serverAddr +'/wx/applied',
+      url: getApp().serverAddr +'/wx/applied',
       success: function (res) {
-        console.log(res)
+        var boy = 0
+        var girl = 0
+        for (var j = 0, len = res.data.length; j < len; j++) {
+          res.data[j].gender == 2 ? girl += 1 : boy += 1
+        }
         that.setData({
+          boy: boy,
+          girl: girl,
           userArr:res.data
         })
         if (res.data.OK) {

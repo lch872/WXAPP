@@ -19,7 +19,14 @@
   </view>
 
   <view class='allUser-view' >
-    <text style='font-size:30rpx;color:#939293;width:100%;display:block'>男:16人 女:8人 总人数:24人</text>
+  <view style='align-items:center;display:flex;justify-content:center'>
+  <image src='../images/boy.png' style='width:35rpx;height:35rpx'></image>
+  <text style='font-size:30rpx;color:#939293;'>{{boy}}</text>
+  
+  <image src='../images/girl.png' style='width:35rpx;height:35rpx;margin-left: 15rpx;'></image>
+  <text style='font-size:30rpx;color:#939293'>{{girl}}</text>
+  </view>
+
 
     <view  wx:if="{{userArr.length!=0}}" class="home-view1">
         <view bindtap='chooseUser' wx:for="{{userArr}}" data-openId='{{item.openId}}' class="home-view3"> 
