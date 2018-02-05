@@ -11,22 +11,20 @@ Page({
     blockColor: ['#F5A9BC', '#F5A9E1', '#A9D0F5', '#BCF5A9', '#A9F5D0', '#A9E2F3', '#A9BCF5', '#F5D0A9', '#F5BCA9', '#F5A9BC', '#F5A9E1', '#A9D0F5', '#BCF5A9', '#A9F5D0', '#A9E2F3', '#A9BCF5', '#F5D0A9', '#F5BCA9']
   },
   chooseUser: function (e) {
-    console.log(e)
-    this.findDelAdd(e)
-    console.log(this.data.groupArr)
+    this.moveToGroup(e)
     this.setData({
       userArr: this.data.userArr,
       groupArr: this.data.groupArr
     })
   },
   deleteUser: function (e) {
-    this.delAdd(e)
+    this.moveToList(e)
     this.setData({
       userArr: this.data.userArr,
       groupArr: this.data.groupArr
     })
   },
-  findDelAdd: function (e) {
+  moveToGroup: function (e) {
     var openId = e.currentTarget.dataset.openid
     for (var j = 0; j < this.data.userArr.length; j++) {
 
@@ -40,7 +38,7 @@ Page({
       }
     }
   },
-  delAdd: function (e) {
+  moveToList: function (e) {
     var openId = e.currentTarget.dataset.openid
     for (var j = 0; j < this.data.groupArr[this.data.selectGroup].length; j++) {
       if (this.data.groupArr[this.data.selectGroup][j].openId == openId) {
@@ -68,10 +66,14 @@ Page({
   sendToUser: function (e) {
     var openId = wx.getStorageSync('userOpenData')
     wx.showLoading({ title: '加载中' })
+    console.log(this.data.groupArr)
     wx.request({
       url: getApp().serverAddr + '/wx/sendMessage',
+      method:"POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded" },
       data: {
-        openId: openId
+        group: JSON.stringify(this.data.groupArr)
       },
       success: function (res) {
         wx.hideLoading()
@@ -90,71 +92,23 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: getApp().serverAddr +'/wx/applied',
+      url: getApp().serverAddr +'/wx/appliedInfo',
       success: function (res) {
         var boy = 0
         var girl = 0
-        for (var j = 0, len = res.data.length; j < len; j++) {
-          res.data[j].gender == 2 ? girl += 1 : boy += 1
+        var list = res.data.appliedList
+        for (var j = 0, len = list.length; j < len; j++) {
+          list[j].gender == 2 ? girl += 1 : boy += 1
         }
         that.setData({
           boy: boy,
           girl: girl,
-          userArr:res.data
+          userArr: list
         })
-        if (res.data.OK) {
-          console.log('88888888888')
-        }
+        // if (res.data.OK) {
+        //   console.log('88888888888')
+        // }
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })

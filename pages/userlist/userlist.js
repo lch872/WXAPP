@@ -11,11 +11,10 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: getApp().serverAddr +'/wx/applied',
+      url: getApp().serverAddr +'/wx/appliedInfo',
       success: function (res) {
-        console.log(res.data)
         that.setData({
-          userArr: res.data
+          userArr: res.data.appliedList
         })
       }
     })

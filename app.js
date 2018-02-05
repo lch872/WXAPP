@@ -68,7 +68,7 @@ App({
     userInfo: null,
     dbId:null
   },
-  serverAddr: 0 ? 'https://lch872.3322.org' : 'http://192.168.0.102:8080',
+  serverAddr: 0 ? 'https://lch872.3322.org' : 'http://192.168.1.150:8080',
   
 
 })

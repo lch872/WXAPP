@@ -4,11 +4,15 @@ var isApplied = 0
 
 Page({
   data: {
+    actId:0,
+    isApply:0,
+    appliedList:[],
+    appliedCount:0,
     dataArr: {}
   },
 
   onLoad: function (options) {
-    // wx.showToast({ title: 'onLoad', icon: 'success', duration: 2000 })
+    this.data.actId=options.actId
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -23,15 +27,7 @@ Page({
       },
       success: function (res) {
         that.setData({
-          dataArr: res.data
-        })
-      },
-      fail: function (res) {
-
-        var dd = {}
-        dd.detail = res.valueOf()
-        that.setData({
-          dataArr: dd
+          dataArr: res.data,
         })
       }
     })
@@ -46,12 +42,24 @@ Page({
     return this.data.dataArr
   },
   onShow: function (e) {
-    console.log(isApplied)
-    this.data.dataArr.isApply = Number(isApplied)
-    this.setData({
-      dataArr: this.data.dataArr
+    var that = this
+    var openIds = wx.getStorageSync('userOpenData')
+    console.log(this.data.actId)
+    wx.request({
+      url: getApp().serverAddr + '/wx/appliedInfo?limit=6',
+      data: {
+        openId: openIds,
+        actId: this.data.actId
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          isApply: res.data.isApply,
+          appliedList: res.data.appliedList,
+          appliedCount:res.data.appliedCount
+        })
+      }
     })
-    console.log(this.data.dataArr)
   }
 })
 

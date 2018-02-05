@@ -30,11 +30,11 @@
 
   <view bindtap='jumpToList' class='list-view' style='display:flex; align-items:center;margin-top: 15rpx;'>
 
-    <text style="text-align:center;font-size: 32rpx;color:#46C9A3;margin-left:30rpx;margin-bottom: 10rpx;-webkit-line-clamp:2;"> {{dataArr.applied}}/{{dataArr.limit}}\n人报名</text>
+    <text style="text-align:center;font-size: 32rpx;color:#46C9A3;margin-left:30rpx;margin-bottom: 10rpx;-webkit-line-clamp:2;"> {{appliedCount}}/{{dataArr.limit}}\n人报名</text>
     
     <view style='background-color:#E4E3E4;height: 35px; width: 2rpx;margin-left: 30rpx;'></view>
       <view style='margin-left: 5rpx;'>
-        <image wx:for="{{dataArr.userArr}}"class='icon-list-view' src="{{dataArr.userArr[index]}}"></image>
+        <image wx:for="{{appliedList}}"class='icon-list-view' src="{{item.avatarUrl}}"></image>
       </view>
     <image class='icon-list-view-icon'src="../images/right.png"></image>
   </view>
@@ -50,5 +50,5 @@
 
 
 <view class='bottom-view'>
-  <navigator class='bottom-view-button' url="../apply/apply?isApply={{dataArr.isApply}}" hover-class="navigator-hover" style="background-color:{{dataArr.isApply?'#5196F8':'#5196F8'}}">{{dataArr.isApply?'已经报名，等待通知':'现在报名'}}</navigator>
+  <navigator class='bottom-view-button' url="../apply/apply?isApply={{isApply}}" hover-class="navigator-hover" style="background-color:{{isApply?'#5196F8':'#5196F8'}}">{{isApply?'已经报名，等待通知':'现在报名'}}</navigator>
 </view>
