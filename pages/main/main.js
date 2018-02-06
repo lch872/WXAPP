@@ -1,9 +1,7 @@
 // pages/main/main.js
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     json: []
   },
@@ -26,9 +24,19 @@ Page({
   
   },
   clickCell: function (e) {
-    var aUrl = e.currentTarget.dataset.url
+    
+    var actId = e.currentTarget.dataset.actid
+    wx.setStorageSync('currentAct', actId)
+    var path = ''
+    if(actId == '3'){
+      path = '../detail/detail?actId=' + actId
+    }else{
+      path = '../review/review'
+    }
+
     wx.navigateTo({
-      url: aUrl
+      url: path
     })
   }
 })
+

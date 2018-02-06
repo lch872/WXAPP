@@ -1,18 +1,20 @@
 // pages/detail/detail.js
 const app = getApp()
+
 var isApplied = 0
 
 Page({
   data: {
     actId:0,
     isApply:0,
+    applyTag:"",
     appliedList:[],
     appliedCount:0,
     dataArr: {}
   },
 
   onLoad: function (options) {
-    this.data.actId=options.actId
+    this.data.actId = options.actId
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -23,7 +25,7 @@ Page({
       url: getApp().serverAddr + '/wx/detail',
       data: {
         openId: openIds,
-        actId: options.actId
+        actId: this.data.actId
       },
       success: function (res) {
         that.setData({
@@ -54,6 +56,7 @@ Page({
       success: function (res) {
         console.log(res)
         that.setData({
+          applyTag: res.data.tag,
           isApply: res.data.isApply,
           appliedList: res.data.appliedList,
           appliedCount:res.data.appliedCount

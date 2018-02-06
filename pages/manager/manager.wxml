@@ -14,11 +14,11 @@
         </view>
       </view>
     </view>
-    <text bindtap='addGroup' style='height:70rpx;width:100%;color:#BEBEBE;display:block'>+</text>
+    <text wx:if="{{!hasGroup}}" bindtap='addGroup' style='height:70rpx;width:100%;color:#BEBEBE;display:block'>+</text>
     <view style='height:200rpx;width:100%;'></view>
   </view>
 
-  <view class='allUser-view' >
+  <view wx:if="{{!hasGroup}}" class='allUser-view' >
   <view style='align-items:center;display:flex;justify-content:center'>
   <image src='../images/boy.png' style='width:35rpx;height:35rpx'></image>
   <text style='font-size:30rpx;color:#939293;'>{{boy}}</text>
@@ -38,6 +38,8 @@
   </view>
 
 
-
+<view wx:if="{{hasGroup}}" class='bottom-view'>
+  <navigator class='bottom-view-button' url="../main/main" hover-class="navigator-hover" open-type="redirectTo" style="background-color:#5196F8">回到首页</navigator>
+</view>
 
 </view>

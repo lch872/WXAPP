@@ -1,7 +1,7 @@
 <!--pages/main/main.wxml-->
 
-<view bindtap="clickCell" data-url='{{item.url}}' wx:for='{{json}}' class='main-cell'>
+<view bindtap="clickCell" data-actId='{{item.id}}' wx:for='{{json}}' class='main-cell'>
 <image src='{{item.imageUrl}}' style='width:100%;height:350rpx;overflow:hidden'></image>
-<text style='padding-left:15rpx;font-size:28rpx'>{{item.title}}</text>
+<text style='padding-left:20rpx;font-size:32rpx'>{{item.title}}</text>
 <view style='background-color:#F2F2F2;width:100%;height:20rpx;margin-top: 10rpx;'></view>
 </view>

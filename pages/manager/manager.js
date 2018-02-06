@@ -8,7 +8,8 @@ Page({
     userArr: [],
     boy:0,
     girl:0,
-    blockColor: ['#F5A9BC', '#F5A9E1', '#A9D0F5', '#BCF5A9', '#A9F5D0', '#A9E2F3', '#A9BCF5', '#F5D0A9', '#F5BCA9', '#F5A9BC', '#F5A9E1', '#A9D0F5', '#BCF5A9', '#A9F5D0', '#A9E2F3', '#A9BCF5', '#F5D0A9', '#F5BCA9']
+    hasGroup:0,
+    blockColor: ['#A9D0F5', '#BCF5A9', '#A9F5D0', '#A9E2F3', '#A9BCF5', '#F5D0A9', '#F5BCA9', '#F5A9BC', '#F5A9E1', '#A9D0F5', '#BCF5A9', '#A9F5D0', '#A9E2F3', '#A9BCF5', '#F5D0A9', '#F5BCA9', '#F5A9BC', '#F5A9E1']
   },
   chooseUser: function (e) {
     this.moveToGroup(e)
@@ -18,6 +19,9 @@ Page({
     })
   },
   deleteUser: function (e) {
+    if (this.data.hasGroup) {
+      return
+    }
     this.moveToList(e)
     this.setData({
       userArr: this.data.userArr,
@@ -66,14 +70,15 @@ Page({
   sendToUser: function (e) {
     var openId = wx.getStorageSync('userOpenData')
     wx.showLoading({ title: '加载中' })
-    console.log(this.data.groupArr)
+
+    console.log(JSON.stringify(this.data.groupArr))
     wx.request({
       url: getApp().serverAddr + '/wx/sendMessage',
       method:"POST",
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded" },
+      header: {"Content-Type": "application/x-www-form-urlencoded" },
       data: {
-        group: JSON.stringify(this.data.groupArr)
+        group: JSON.stringify(this.data.groupArr),
+        actId: wx.getStorageSync('currentAct')
       },
       success: function (res) {
         wx.hideLoading()
@@ -83,7 +88,7 @@ Page({
           duration: 2000
         })
       }
-    });  
+    })
     
   },
   /**
@@ -91,8 +96,31 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+
     wx.request({
-      url: getApp().serverAddr +'/wx/appliedInfo',
+      url: getApp().serverAddr + '/wx/groupList',
+      data: {
+        actId: wx.getStorageSync('currentAct')
+      },
+      success: function (res) {
+        if (res.data.hasGroup) {
+          that.setData({
+            groupArr: res.data.list,
+            hasGroup: res.data.hasGroup
+          })
+        }else{
+          that.getAllUser()
+        }
+      }
+    })
+  },
+  getAllUser: function (options) {
+    var that = this
+    wx.request({
+      url: getApp().serverAddr + '/wx/appliedInfo',
+      data: {
+        actId: wx.getStorageSync('currentAct')
+      },
       success: function (res) {
         var boy = 0
         var girl = 0
@@ -105,9 +133,6 @@ Page({
           girl: girl,
           userArr: list
         })
-        // if (res.data.OK) {
-        //   console.log('88888888888')
-        // }
       }
     })
   }

@@ -20,9 +20,10 @@
    
   
 
-  <view  class="home-view1">
-    <view wx:for="{{dataArr.table}}" class="home-view3"> 
+  <view wx:for="{{dataArr.table}}" class="home-view1">
+    <view  class="home-view3"> 
         <image  class="home-image-heart" src="../images/{{item.icon}}.png"></image>
+        <text class="home-text-time" >{{item.tag}}</text>
         <text class="home-text-time" >{{item.text}}</text>
     </view>
     <view class="home-view-line"></view>
@@ -50,5 +51,5 @@
 
 
 <view class='bottom-view'>
-  <navigator class='bottom-view-button' url="../apply/apply?isApply={{isApply}}" hover-class="navigator-hover" style="background-color:{{isApply?'#5196F8':'#5196F8'}}">{{isApply?'已经报名，等待通知':'现在报名'}}</navigator>
+  <navigator class='bottom-view-button' url="../apply/apply?isApply={{isApply}}&tag={{applyTag}}" hover-class="navigator-hover" style="background-color:{{isApply?'#5196F8':'#5196F8'}}">{{isApply?'已经报名，等待通知':'现在报名'}}</navigator>
 </view>

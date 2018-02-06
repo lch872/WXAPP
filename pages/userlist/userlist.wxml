@@ -1,8 +1,12 @@
 <!--pages/userlist/userlist.wxml-->
 <view wx:for="{{userArr}}" class="home-view1">
+    <view style='display:flex;justify-content:space-between;align-items:center;'>
     <view class="home-view3"> 
         <image  class="userlist-image" src="{{item.avatarUrl}}"></image>
         <text class="userlist-name" style="color:{{item.gender==2?'#F17272':'#3CADED'}}">{{item.nickName}}</text>
     </view>
+    <text class="userlist-name" style='color:#939293;height:100%;margin-top: 20rpx;margin-right: 50rpx'>{{tag[item.tag]}}</text>
+    </view>
+     
     <view class="userlist-line"></view>
 </view>

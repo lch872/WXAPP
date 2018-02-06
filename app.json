@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/manager/manager",
+    
     "pages/main/main",
     "pages/detail/detail",
-    
+    "pages/manager/manager",
     "pages/apply/apply",
-    "pages/userlist/userlist"
+    "pages/userlist/userlist",
+    "pages/review/review"
     
   ],
   "window": {

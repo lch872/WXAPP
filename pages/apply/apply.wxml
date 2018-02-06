@@ -13,7 +13,7 @@
       <view wx:for="{{pickerData}}" class="section">
         <view class="section__title">{{pickerData[index].title}}</view>
 
-        <picker name="picker" bindchange="bindPickerChange" value="{{pickerData[index].newindex}}" data-current="{{pickerData[index].section}}" range="{{pickerData[index].data}}">
+        <picker disabled="{{isApply}}" name="picker" bindchange="bindPickerChange" value="{{pickerData[index].newindex}}" data-current="{{pickerData[index].section}}" range="{{pickerData[index].data}}">
           <view class="picker">{{pickerData[index].data[pickerData[index].newindex]}}</view>
         </picker>
       </view>

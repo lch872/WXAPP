@@ -108,7 +108,8 @@ page {
   color: white;
   text-align: center;
   vertical-align:middle;
-  padding-top: 20rpx
+  padding-top: 20rpx;
+  font-size:40rpx
 }
 
 .button-after::after{

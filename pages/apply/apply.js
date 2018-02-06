@@ -1,7 +1,7 @@
 //index.js
 
 const app = getApp()
-var common = require('../detail/detail.js')
+
 
 Page({
   data: {
@@ -11,13 +11,13 @@ Page({
         "section":0,
         "newindex":0,
         "title": "活动时间",
-        "data": ['下午 14:00 - 18:00', '晚上 19:00 - 21:00']
+        "data": ['星期六 13:30 - 17:30']
       }, 
       {
         "section":1,
         "newindex": 0,
         "title": "自我评价",
-        "data": ['剧组炊事班','龙套实习生','活不过两幕','戏精你懂么','压轴台柱子']
+        "data": ['剧组炊事班', '抢戏路人甲', '活不过两幕', '加戏加鸡腿', '戏精你懂么', '压轴台柱子','深藏功与名']
       }
     ],
     motto: '遇见更好的自己 ：）',
@@ -29,12 +29,13 @@ Page({
  
   onLoad: function (option) {
 
-
-    console.log(Number(option.isApply))
+    console.log(option)
+    this.data.pickerData[1].newindex = Number(option.tag)
     this.setData({
+      pickerData: this.data.pickerData,
       isApply: Number(option.isApply)
     })
-    console.log(option.isApply)
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -105,10 +106,13 @@ Page({
     wx.showLoading({title: '加载中'})
 
     var formId = e.detail.formId
-    var openid = wx.getStorageSync('userOpenData')
+    var actId = wx.getStorageSync('currentAct')
+    var openId = wx.getStorageSync('userOpenData')
     
-    this.applyRequest('1', openid, '1', formId)
+    var arr = this.data.pickerData[1]
+    var tag = arr.newindex
 
+    this.applyRequest(actId, openId, '1', formId, tag)
     this.setData({
       enablePicker: !this.data.enablePicker
     })
@@ -119,12 +123,12 @@ Page({
       itemList: ['取消报名'],
       itemColor: "#E43A37",
       success: function (res) {
-
+        var actId = wx.getStorageSync('currentAct')
         var openid = wx.getStorageSync('userOpenData')
 
         wx.showLoading({title: '加载中'})
 
-        that.applyRequest('1', openid, '0')
+        that.applyRequest(actId, openid, '0')
       },
       fail: function (res) {
         console.log(res.errMsg)
@@ -136,7 +140,7 @@ Page({
       url: '../manager/manager'
     })
   },
-  applyRequest: function (actID, openid, isConfirm, aFormId) {
+  applyRequest: function (actID, openid, isConfirm, aFormId, tag) {
     var that = this
     wx.request({
       url: getApp().serverAddr +'/wx/apply',
@@ -144,14 +148,15 @@ Page({
         openId: openid,
         activity: actID,
         confirm: isConfirm,
-        formId: aFormId
+        formId: aFormId,
+        tag: tag
       },
       success: function (res) {
         if (res.data.OK) {
 
           wx.hideLoading()
           wx.showToast({ title: '操作成功',icon: 'success',duration: 2000 })
-          common.setApplied(isConfirm)
+          // common.setApplied(isConfirm)
           console.log(isConfirm)
           that.setData({
             isApply: parseInt(isConfirm)
