@@ -51,5 +51,5 @@
 
 
 <view class='bottom-view'>
-  <navigator class='bottom-view-button' url="../apply/apply?isApply={{isApply}}&tag={{applyTag}}" hover-class="navigator-hover" style="background-color:{{isApply?'#5196F8':'#5196F8'}}">{{isApply?'已经报名，等待通知':'现在报名'}}</navigator>
+  <navigator class='bottom-view-button' url="../apply/apply?isApply={{isApply}}&tag={{applyTag}}" hover-class="navigator-hover" style="background-color:{{isApply?'#5196F8':'#5196F8'}}">{{appliedCount>=dataArr.limit?"报名人数已满":(isApply?'已经报名，等待通知':'现在报名')}}</navigator>
 </view>

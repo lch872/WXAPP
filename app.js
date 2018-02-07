@@ -18,8 +18,8 @@ App({
             url: getApp().serverAddr + '/wx/getOpenId',
             data: { js_code:res.code},
             success: function (res) {
-              console.log('success OpenId：', res.data.openid)
-              wx.setStorageSync('userOpenData', res.data.openid)
+              console.log('success OpenId：', res.data.content.openid)
+              wx.setStorageSync('userOpenData', res.data.content.openid)
               console.log(res)
             }
           })
@@ -46,7 +46,7 @@ App({
                 header: {'content-type': 'application/x-www-form-urlencoded'},
                 success: function (res) {
 
-                  if(res.data.OK){
+                  if (res.data.success){
                     console.log('88888888888')
                   }
                 }
@@ -68,7 +68,7 @@ App({
     userInfo: null,
     dbId:null
   },
-  serverAddr: 1 ? 'https://lch872.3322.org' : 'http://192.168.1.150:8080',
+  serverAddr: 0 ? 'https://lch872.3322.org' : 'http://192.168.1.150:8080',
   
 
 })

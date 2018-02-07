@@ -152,16 +152,12 @@ Page({
         tag: tag
       },
       success: function (res) {
-        if (res.data.OK) {
-
-          wx.hideLoading()
-          wx.showToast({ title: '操作成功',icon: 'success',duration: 2000 })
-          // common.setApplied(isConfirm)
-          console.log(isConfirm)
+        wx.hideLoading()
+        var ic = res.data.success ? 'success' : 'none'
+        wx.showToast({ title: res.data.message, icon: ic ,duration: 2000 })
           that.setData({
-            isApply: parseInt(isConfirm)
-          })
-        }
+            isApply: res.data.success
+        })
       }
     })
   },
@@ -175,11 +171,35 @@ Page({
       data: u,
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success: function (res) {
-        if (res.data.OK) {
+        if (res.data.success) {
           console.log('88888888888')
         }
       }
     })
+  },
+  scanCode: function () {
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log(res)
+        var path = 'https://mp.weixin.qq.com/a/~t2CHa9r9eE9L6sYM2wff0w~~'
+        if (res.result == path){
+          wx.request({
+            url: getApp().serverAddr + '/wx/signIn',
+            data: {
+              openId: wx.getStorageSync('userOpenData'),
+              actId: wx.getStorageSync('currentAct'),
+            },
+            success: function (res) {  
+              var ic = res.data.success ? "success" : "none"
+              console.log(ic)
+              wx.showToast({ title: res.data.message, icon: ic, duration: 2000 })
+            }
+          })
+        }else{
+          wx.showToast({ title: "剧组筹备中，请等待通告", icon: 'none', duration: 2000 })
+        }
+      }
+    })
   }
-
 })

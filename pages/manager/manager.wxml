@@ -9,7 +9,8 @@
       <text class='groud-name-view' style="line-height:{{groupArr[index].length>4?'240rpx':'130rpx'}};background-color:{{userArr.length!=0?(selectGroup==index?'#5196F8':'#BEBEBE'):blockColor[index]}};color:{{userArr.length!=0?(selectGroup==index?'#fff':'#E0E0E0'):'#fff'}};">第 {{index+1}} 组</text>
       <view  class="home-view1" style='width:75%;'>
         <view bindtap='deleteUser' wx:for="{{groupArr[index]}}" class="home-view3"  data-openId='{{item.openId}}' style="display:inline-block;width: 135rpx;"> 
-          <image  class="userlist-image" src="{{item.avatarUrl}}"></image>
+           <image  class="userlist-image" src="{{item.avatarUrl}}"></image>
+          <image wx:if="{{item.signIn==1}}" class="userlist-image" src="../images/ok.png" style='display:float;height:20rpx;width:20rpx;margin-bottom: 10rpx;'></image>
           <text class="userlist-name" style="color:{{item.gender==2?'#F17272':'#3CADED'}};">{{item.nickName}}</text>
         </view>
       </view>

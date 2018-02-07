@@ -29,7 +29,7 @@ Page({
       },
       success: function (res) {
         that.setData({
-          dataArr: res.data,
+          dataArr: res.data.content,
         })
       }
     })
@@ -56,10 +56,10 @@ Page({
       success: function (res) {
         console.log(res)
         that.setData({
-          applyTag: res.data.tag,
-          isApply: res.data.isApply,
-          appliedList: res.data.appliedList,
-          appliedCount:res.data.appliedCount
+          applyTag: res.data.content.tag,
+          isApply: res.data.content.isApply,
+          appliedList: res.data.content.appliedList,
+          appliedCount: res.data.content.appliedCount
         })
       }
     })

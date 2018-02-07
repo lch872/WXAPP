@@ -21,7 +21,14 @@
 
   <button formType='submit' class='applyBtn' style="background-color:{{(!hasUserInfo || isApply)?'#939293':'#5196F8'}}">{{isApply?'已成功报名':'确定'}}</button> 
 </form>
-<text wx:if="{{isApply}}" bindtap='cancelApply' style='color:#939293;font-size:25rpx;float:right;margin-top:50rpx;margin-right:6%;'>时间冲突，取消报名</text>
+
+<view style='display:flex;justify-content:space-between;align-items:center;margin-top:40rpx;'>
+  <view wx:if="{{isApply}}" bindtap='scanCode' style='align-items:center;display:flex;margin-left:4%;'>
+      <image src='../images/scan.png' style='width:35rpx;height:35rpx'></image>
+      <text style='color:#555454;font-size:30rpx;margin-left:10rpx'>扫码签到</text>
+  </view>
+  <text wx:if="{{isApply}}" bindtap='cancelApply' style='color:#939293;font-size:25rpx;float:right;margin-right:6%;'>“导演，档期排满了”</text>
+</view>
 </view>
 
 

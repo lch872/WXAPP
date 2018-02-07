@@ -12,7 +12,7 @@ Page({
       url: getApp().serverAddr + '/wx/main',
       success: function (res) {
         that.setData({
-          json: res.data
+          json: res.data.content
         })
       },
     })

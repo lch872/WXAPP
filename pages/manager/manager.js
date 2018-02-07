@@ -103,10 +103,10 @@ Page({
         actId: wx.getStorageSync('currentAct')
       },
       success: function (res) {
-        if (res.data.hasGroup) {
+        if (res.data.content.hasGroup) {
           that.setData({
-            groupArr: res.data.list,
-            hasGroup: res.data.hasGroup
+            groupArr: res.data.content.list,
+            hasGroup: res.data.content.hasGroup
           })
         }else{
           that.getAllUser()
@@ -124,7 +124,7 @@ Page({
       success: function (res) {
         var boy = 0
         var girl = 0
-        var list = res.data.appliedList
+        var list = res.data.content.appliedList
         for (var j = 0, len = list.length; j < len; j++) {
           list[j].gender == 2 ? girl += 1 : boy += 1
         }
