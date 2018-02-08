@@ -5,12 +5,21 @@ var isApplied = 0
 
 Page({
   data: {
+    isAdmin:0,
     actId:0,
     isApply:0,
     applyTag:"",
     appliedList:[],
     appliedCount:0,
-    dataArr: {}
+    dataArr: {},
+    sudo:0,
+    addActData: {
+      "title":"本期活动 ：周末常规话剧练习",
+      "pay": "￥15元 /人",
+      "date": "2018-01-26 星期六",
+      "address": "客村站D出口丽影广场B座5栋1102室",
+      "limit": "24",
+    }
   },
 
   onLoad: function (options) {
@@ -30,6 +39,7 @@ Page({
       success: function (res) {
         that.setData({
           dataArr: res.data.content,
+          isAdmin:Number(options.admin)
         })
       }
     })
@@ -59,8 +69,41 @@ Page({
           applyTag: res.data.content.tag,
           isApply: res.data.content.isApply,
           appliedList: res.data.content.appliedList,
-          appliedCount: res.data.content.appliedCount
+          appliedCount: res.data.content.appliedCount,
+          sudo: res.data.content.sudo
         })
+      }
+    })
+  },
+  inputEvent: function (e) {
+    var tag = e.currentTarget.dataset.tag
+    console.log(e)
+    if (tag == 'table0'){
+      tag = 'pay';
+    } else if (tag == 'table1') {
+      tag = 'date';
+    } else if (tag == 'table2') {
+      tag = 'address';
+    }
+    this.data.addActData[tag] = e.detail.value
+    console.log(this.data.addActData)
+  },
+
+  addAct:function (e){
+    // var oldData = this.data.dataArr
+    var actData = this.data.addActData
+    
+    actData['detail'] = e.detail.value.detail
+    actData['views'] = 0
+    actData['openId'] = wx.getStorageSync('userOpenData')
+    wx.request({
+      url: getApp().serverAddr + '/wx/addAct',
+      method: 'POST',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: actData,
+      success: function (res) {
+        var ic = res.data.success ? 'success' : 'none'
+        wx.showToast({ title: res.data.message, icon: ic, duration: 2000 })
       }
     })
   }

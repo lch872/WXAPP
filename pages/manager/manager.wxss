@@ -1,61 +1,12 @@
-.home-view1{
-    /*  */
-    display: inline-block;
-} 
-.home-view3{
-    /* margin-top: 5rpx; */
-    /* margin-left: 10rpx; */
-    display: inline-block;
-    width: 120rpx;
-    /* height: 105rpx; */
-    /* background-color:green; */
-    text-align:center;
-} 
-.userlist-image{
-  margin-top: 10rpx;
-  width: 80rpx;
-  height: 80rpx;
-  border-radius:50%;
-  display: inline-block;
-}
-.userlist-name{
-    margin-top: -5px;
-    display: block;
-    font-size:20rpx;
-    color:#000000;
-    line-height: 25rpx;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow:ellipsis;
-    text-align:center;
-}
-.allUser-view{
-  background-color:#fff;
-  display:block;
-  position: fixed;
-  bottom: 0rpx;
-  width: 100%;
-}
-.groud-name-view{
-  width:25%;
+/* pages/manager/manager.wxss */
 
-}
 
-.bottom-view{
-  background-color:#E4E3E4;
-  position: fixed;
-  height: 100rpx;
-  bottom: 0;
-  width: 100%;
-  display:flex;
-}
-
-.bottom-view-button{
-  width: 100%;
-  height: 100%;
-  color: white;
-  text-align: center;
+.post-button{
+  margin-top: 40rpx;
+  background-color:#5196F8;
+  width:90%;
+  align-items:center;
   vertical-align:middle;
-  padding-top: 20rpx;
-  font-size:40rpx
+  color:#fff;
+  height:90rpx;
 }

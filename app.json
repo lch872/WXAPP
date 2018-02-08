@@ -3,11 +3,11 @@
     
     "pages/main/main",
     "pages/detail/detail",
-    "pages/manager/manager",
+    "pages/group/group",
     "pages/apply/apply",
     "pages/userlist/userlist",
-    "pages/review/review"
-    
+    "pages/review/review",
+    "pages/manager/manager"
   ],
   "window": {
     "backgroundTextStyle": "light",

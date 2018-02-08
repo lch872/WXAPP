@@ -6,6 +6,7 @@ const app = getApp()
 Page({
   data: {
     isApply: false,
+    isSudo: 1,
     pickerData:[
       {
         "section":0,
@@ -33,7 +34,8 @@ Page({
     this.data.pickerData[1].newindex = Number(option.tag)
     this.setData({
       pickerData: this.data.pickerData,
-      isApply: Number(option.isApply)
+      isApply: Number(option.isApply),
+      isSudo: Number(option.isSudo)
     })
 
     if (app.globalData.userInfo) {
@@ -136,6 +138,10 @@ Page({
     })
   },
   jumpManager: function (e) {
+
+    if (!this.data.isSudo){
+      return
+    }
     wx.navigateTo({
       url: '../manager/manager'
     })
