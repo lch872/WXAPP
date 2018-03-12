@@ -2,12 +2,15 @@
   "pages": [
     
     "pages/main/main",
+    "pages/notice/notice",
+    "pages/manager/manager",
+    "pages/feedback/feedback",
     "pages/detail/detail",
     "pages/group/group",
     "pages/apply/apply",
     "pages/userlist/userlist",
-    "pages/review/review",
-    "pages/manager/manager"
+    "pages/review/review"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

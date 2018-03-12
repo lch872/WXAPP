@@ -1,4 +1,4 @@
-page {
+pag1e {
   height: 100%;
   display:flex;
   justify-content:center;
@@ -95,22 +95,22 @@ page {
   border:1px solid #FFDA33;
 }
 
-.bottom-view{
-  background-color:#E4E3E4;
-  position: fixed;
-  height: 100rpx;
-  bottom: 0;
-  width: 100%;
+.bottom-view111{
+  background-color:#E4E3E4; 
+
   display:flex;
 }
 
-.bottom-view-button{
+.bottom-view{
+  bottom: 0;
+  display: flex;
+  position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100rpx;
   color: white;
-  text-align: center;
-  vertical-align:middle;
-  padding-top: 20rpx;
+  text-align: center; 
+  justify-content: center; 
+  align-items: center;
   font-size:40rpx
 }
 

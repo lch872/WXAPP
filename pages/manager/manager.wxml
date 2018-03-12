@@ -1,7 +1,7 @@
 <!--pages/manager/manager.wxml-->
 
 <view>
-  <button bindtap='makeGroup' class='post-button' >分组管理</button>
   <button bindtap='newActivity' class='post-button' >新建活动</button>
-  <!-- <button formType='submit' class='post-button' >发布活动</button> -->
+  <button bindtap='makeGroup' class='post-button' >分组管理</button>
+  <button bindtap='sendFeedback' class='post-button' >获取评价</button>
 </view>

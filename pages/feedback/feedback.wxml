@@ -1,0 +1,25 @@
+
+<view style='width:100%;display:flex;flex-direction:column;justify-content:center;'>
+
+
+<view style='background-color:#F2F2F2;width:100%;height:20rpx'></view>
+<form bindsubmit="formSubmit" report-submit style='width:100%;'>
+      <textarea name="detail" maxlength="-1" auto-height='false' class="textarea" placeholder-class="phcolor" placeholder="提出你的评价或建议，帮助我们更好的改进🙂"/>          
+  
+<view style='background-color:#F2F2F2;width:100%;height:20rpx'></view>
+<view style='margin-top:30rpx;margin-left:30rpx;display:flex;align-items:center;'>
+<text style='margin-bottom:10rpx;' >活动评分： </text>
+<view style='margin-left:10rpx' >
+    <image wx:for="{{stars}}" class="star-image" style="left: {{item*60}}rpx;" src="{{key > item ? selectedSrc : normalSrc}}" data-key="{{item+1}}" bindtap="selected"></image>
+  </view>
+</view>
+    
+    <button formType='submit' class='post-button' >{{isUpdata?"返回首页":"提交"}}</button>
+ </form>  
+
+
+<text space='true' decode='true' style='margin-left:8%;width:84%;font-size:32rpx;color:#A2A2A2;margin-top:60rpx;' >似乎生活总是这样，精彩的瞬间只是一些点缀，平凡和普通才是常态。\n学会在平凡的生活中寻找小小的快乐，才是真正幸福的生活。\n...\n期待下一次的相遇。</text>
+
+</view>
+
+

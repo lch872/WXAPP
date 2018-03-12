@@ -158,12 +158,16 @@ Page({
         tag: tag
       },
       success: function (res) {
+        if (res.data.success){
+          wx.navigateTo({
+            url: '../notice/notice?actId=' + wx.getStorageSync('currentAct')
+          })
+        }
         wx.hideLoading()
-        var ic = res.data.success ? 'success' : 'none'
-        wx.showToast({ title: res.data.message, icon: ic ,duration: 2000 })
-          that.setData({
-            isApply: res.data.success
+        that.setData({
+          isApply: res.data.success
         })
+          
       }
     })
   },

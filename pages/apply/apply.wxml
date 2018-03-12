@@ -27,7 +27,7 @@
       <image src='../images/scan.png' style='width:35rpx;height:35rpx'></image>
       <text style='color:#555454;font-size:30rpx;margin-left:10rpx'>扫码签到</text>
   </view>
-  <text wx:if="{{isApply}}" bindtap='cancelApply' style='color:#939293;font-size:25rpx;float:right;margin-right:6%;'>“导演，档期排满了”</text>
+  <text wx:if="{{isApply}}" bindtap='cancelApply' style='color:#939293;font-size:25rpx;float:right;margin-right:6%;'>“我档期排满了”</text>
 </view>
 </view>
 

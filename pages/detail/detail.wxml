@@ -1,15 +1,11 @@
 <view class="pag1e">
-  <!-- <view></view> -->
 
-
-    <image style="width:100%;height:500rpx;margin-top: 700rpx;" mode='aspectFit' src="{{dataArr.imageUrl}}"></image>
-
-
+    <image style="display:flex;width:100%;height:400rpx;" src="{{dataArr.imageUrl}}"></image>
 
     <input wx:if='{{isAdmin}}' bindblur='inputEvent' data-tag='imageUrl' style="margin-left: 50rpx;font-size:30rpx;width:95%;" placeholder="输入图片地址"></input>
 
 
-    <input disabled='{{!isAdmin}}' bindblur='inputEvent' data-tag='title' style="font-size:40rpx;width:100%;font-weight:bold;text-align:center;" placeholder="这里输入标题" value='{{dataArr.title}}' ></input>
+    <input disabled='{{!isAdmin}}' bindblur='inputEvent' data-tag='title' style="margin-top: 20rpx;font-size:40rpx;width:100%;font-weight:bold;text-align:center;" placeholder="这里输入标题" value='{{dataArr.title}}' ></input>
 
     <view class='shareView'>
       <view style='display:flex;align-items:center;margin-left:5rpx;'>
@@ -44,12 +40,7 @@
     <view class="table-line" style='margin-top: 8rpx;'></view> 
     <view style='justify-content:center;display:flex'>
       <text wx:if='{{!isAdmin}}'  class='detail-textarea' style='padding-left: 0rpx;'>{{dataArr.detail}}</text>
-      <!-- <form  wx:if='{{isAdmin}}' bindsubmit="addAct" report-submit >
-      <view style='height:800rpx'>
-        <textarea  class='detail-textarea' disabled='{{!isAdmin}}' auto-height='true' maxlength='-1' value='{{dataArr.detail}}'></textarea>
-      </view>
-        
-      </form> -->
+
       <form bindsubmit="addAct" wx:if='{{isAdmin}}' style='width:100%'>
       <textarea name="detail" maxlength="-1" auto-height='true'value="{{dataArr.detail}}" class="detail-textarea" placeholder="填写内容(12-500字)" />          
       <button formType='submit' class='post-button' >发布活动</button>
@@ -62,9 +53,5 @@
     
 </view> 
 
- 
-
- <view wx:if='{{!isAdmin}}' class='bottom-view'> 
-  <navigator class='bottom-view-button' url="../apply/apply?isApply={{isApply}}&tag={{applyTag}}&isSudo={{sudo}}" hover-class="navigator-hover" style="background-color:{{isApply?'#5196F8':'#5196F8'}}">{{isApply?'已经报名，等待通知':(appliedCount>=dataArr.limit?"报名人数已满":'现在报名')}}</navigator>
+  <navigator wx:if='{{!isAdmin}}' class='bottom-view' hover-class="none"  url="../apply/apply?isApply={{isApply}}&tag={{applyTag}}&isSudo={{sudo}}" style="background-color:{{isApply?'#5196F8':'#5196F8'}}">{{isApply?'已经报名，等待通知':(appliedCount>=dataArr.limit?"报名人数已满":'现在报名')}}</navigator>
   
- </view> 

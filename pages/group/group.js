@@ -73,7 +73,7 @@ Page({
 
     console.log(JSON.stringify(this.data.groupArr))
     wx.request({
-      url: getApp().serverAddr + '/wx/sendMessage',
+      url: getApp().serverAddr + '/wx/sendMessage?type=reminder',
       method:"POST",
       header: {"Content-Type": "application/x-www-form-urlencoded" },
       data: {

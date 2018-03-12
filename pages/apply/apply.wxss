@@ -48,11 +48,11 @@ page {
 }
 .section__title{
   margin-left: 10rpx;
-    margin-bottom: 5rpx;
-    padding-left: 10rpx;
-    padding-right: 30rpx;
-    color: #939293;
-    font-size: 25rpx;
+  margin-bottom: 5rpx;
+  padding-left: 10rpx;
+  padding-right: 30rpx;
+  color: #939293;
+  font-size: 25rpx;
 
 }
 .picker{
@@ -61,10 +61,8 @@ page {
 }
  .applyBtn{
   color: white;
-  font-size: 30rpx;
-  margin-top: 80rpx;
-  margin-left: 30rpx; 
-  margin-right: 30rpx; 
-
-  width: 90%;
+  margin-top: 50rpx;
+  line-height: 80rpx;
+  height:80rpx;
+  width: 95%;
 } 

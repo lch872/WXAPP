@@ -1,0 +1,9 @@
+/* pages/notice/notice.wxss */
+.post-button{
+  margin-top:30rpx;
+  height:80rpx;
+  width: 95%;
+  line-height: 80rpx;
+  background-color: #5196F8; 
+  color:white;
+}

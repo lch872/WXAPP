@@ -5,8 +5,7 @@ Page({
   data: {
     json: []
   },
-
-  onLoad: function (options) {
+  onShow: function (options) {
     var that = this
     wx.request({
       url: getApp().serverAddr + '/wx/main',
@@ -28,7 +27,7 @@ Page({
     var actId = e.currentTarget.dataset.actid
     wx.setStorageSync('currentAct', actId)
     var path = ''
-    if(actId == '3'){
+    if(Number(actId) >= 3 ){
       path = '../detail/detail?actId=' + actId
     }else{
       path = '../review/review'

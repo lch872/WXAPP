@@ -90,20 +90,22 @@ Page({
   },
 
   addAct:function (e){
-    // var oldData = this.data.dataArr
+
     var actData = this.data.addActData
     
     actData['detail'] = e.detail.value.detail
     actData['views'] = 0
     actData['openId'] = wx.getStorageSync('userOpenData')
+    wx.showLoading({ title: '加载中' })
     wx.request({
       url: getApp().serverAddr + '/wx/addAct',
       method: 'POST',
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       data: actData,
       success: function (res) {
+        wx.hideLoading()
         var ic = res.data.success ? 'success' : 'none'
-        wx.showToast({ title: res.data.message, icon: ic, duration: 2000 })
+        wx.showToast({ title: res.data.message, icon: ic, duration: 2000})
       }
     })
   }

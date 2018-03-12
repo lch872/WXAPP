@@ -1,0 +1,30 @@
+
+.star-image {
+  top: 50rpx;
+  width:60rpx;
+  height:60rpx;
+  src: "../images/normal.png";
+}
+.textarea{
+  margin-left:1%; 
+  width:98%;
+  padding: 5,5,5,5;
+  /* background-color: #E0ECF8;  */
+  /* border: 1px #CED8F6 solid;  */
+  /* border-radius:3px; */
+  scrollbar-arrow-color: #cccccc;
+  margin-top:30rpx;
+  min-height:300rpx;
+  max-height:600rpx;
+}
+.post-button{
+  margin-top:30rpx;
+  height:80rpx;
+  width: 95%;
+  line-height: 80rpx;
+  background-color: #5196F8; 
+  color:white;
+}
+.phcolor{
+  font-size: 30rpx;
+}
